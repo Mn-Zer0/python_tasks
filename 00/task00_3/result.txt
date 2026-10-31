@@ -1,0 +1,5 @@
+1 Python Developer 120000 open
+2 Java Developer 150000 closed
+3 Frontend Developer 100000 open
+4 Data Scientist 180000 open
+5 QA Engineer 80000 closed
