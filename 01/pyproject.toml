@@ -1,0 +1,25 @@
+[project]
+name = "job-tracker"
+version = "0.1.0"
+description = "Трекер поиска работы"
+readme = "README.md"
+authors = [
+    { name = "Mn_Zer0", email = "zevsoptifinehd@mail.ru" }
+]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+job_tracker = "job_tracker.main:main"
+
+[tool.uv.build-backend]
+module-name = "job_tracker"
+
+[build-system]
+requires = ["uv_build>=0.13.7,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.17.3",
+]
