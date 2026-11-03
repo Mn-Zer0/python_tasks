@@ -1,15 +1,22 @@
 from storage import read_json
-from models import validate, Vacancy
+from models import validate, Vacancy, filter_records, is_rule
+from pathlib import Path
 
+
+file = Path(__file__).parent / "task.json"
 vacancies = []
-file = "task.json"
 
 if __name__ == "__main__":
     data = read_json(file)
     validate(data)
 
-    for record in data:
-        vacancies.append(Vacancy(record['id'], record['title'], record['salary'], record['status']))
+    filtered = filter_records(data, is_rule, key="status", value="open", limit=10)
 
-    for vacansy in vacancies:
-        print(vacansy.ID, vacansy.title, vacansy.salary, vacansy.status)
+    if filtered:
+        for record in filtered:
+            vacancies.append(Vacancy(record['id'], record['title'], record['salary'], record['status']))
+
+        for vacansy in vacancies:
+            print(vacansy.ID, vacansy.title, vacansy.salary, vacansy.status)
+    else:
+        print("Записи не найдены")

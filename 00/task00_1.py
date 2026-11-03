@@ -6,10 +6,13 @@ print("\n00.1 task 1\n")
 1. Сохраните входные данные в JSON с кириллицей. Прочитайте их через pathlib и with , явно
 задав UTF-8.
 '''
+from pathlib import Path
 
+
+file = Path(__file__).parent / "task.json"
 
 def read_json():
-    with open("task.json", "r", encoding="UTF-8") as f:
+    with open(file, "r", encoding="UTF-8") as f:
         data = json.load(f)
     return data
 
@@ -67,22 +70,20 @@ print("\n00.1 task 4\n")
 """
 
 
-def filter_records(records, rule, *, limit=None):
+def filter_records(records, rule, *, key, value, limit=None):
     # print(records)
-    filtered = [record for record in records if rule(record["status"])]
+    filtered = [record for record in records if rule(record[key], value)]
     if limit is None:
-        return "limit is None"
-    elif limit > len(records):
-        return "len limit > len records"
+        return filtered
     else:
         return filtered[:limit]
 
-def is_open(status):
-    return status == "open"
+def is_rule(record_key, value):
+    return record_key == value
 
 data = read_json()
 
-print(filter_records(data, is_open, limit=3))
+print(filter_records(data, is_rule, key="title", value="Python Разработчик", limit=3))
 
 
 print("\n00.1 task 5\n")
@@ -100,10 +101,10 @@ from datetime import datetime, timedelta, timezone
 moment = datetime.fromisoformat("2026-03-01T10:00:00+03:00")
 
 if moment.tzinfo is None:
-    print("Часовой пояс не указан")
-
-moment_utc = moment.astimezone(timezone.utc)
-moment2 = moment_utc.astimezone(timezone(timedelta(hours=3)))
-print(moment)
-print(moment_utc)
-print(moment2)
+    raise ValueError("Часовой пояс не указан")
+else:
+    moment_utc = moment.astimezone(timezone.utc)
+    moment2 = moment_utc.astimezone(timezone(timedelta(hours=3)))
+    print(moment)
+    print(moment_utc)
+    print(moment2)

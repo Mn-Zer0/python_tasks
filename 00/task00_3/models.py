@@ -4,6 +4,18 @@ class VacancyFormatError(Exception):
     pass
 
 
+def filter_records(records, rule, *, key, value, limit=None):
+    # print(records)
+    filtered = [record for record in records if rule(record[key], value)]
+    if limit is None:
+        return filtered
+    else:
+        return filtered[:limit]
+
+def is_rule(record_key, value):
+    return record_key == value
+
+
 def validate(data):
     for record in data:
         # print(record, "\n")

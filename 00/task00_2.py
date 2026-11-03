@@ -6,10 +6,14 @@ class VacancyFormatError(Exception):
 
 
 import json
+from pathlib import Path
+
+
+file = Path(__file__).parent / "task.json"
 
 def read_json():
     try:
-        with open("task.json", "r") as f:
+        with open(file, "r", encoding="UTF-8") as f:
             try:
                 data = json.load(f)
             except json.decoder.JSONDecodeError as exception:
