@@ -7,6 +7,7 @@ wheels/
 !.env.example
 !.pre-commit-config.yaml
 !.python-version
+.idea/
 
 # Virtual environments
 .venv
