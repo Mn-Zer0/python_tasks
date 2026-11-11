@@ -1,7 +1,0 @@
-[
-    {"id": 1, "title": "Python Разработчик", "salary": 120000, "status": "open"},
-    {"id": 2, "title": "Java Разработчик", "salary": 150000, "status": "closed"},
-    {"id": 3, "title": "Frontend Разработчик", "salary": 100000, "status": "open"},
-    {"id": 4, "title": "Data Scientist", "salary": 180000, "status": "open"},
-    {"id": 5, "title": "QA Engineer", "salary": 80000, "status": "closed"}
-]
